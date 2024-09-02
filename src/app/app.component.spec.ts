@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [RouterTestingModule],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 
@@ -14,18 +16,18 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'myFlix-Angular-client' title`, () => {
+  it(`should have as title 'myFlix-Anglular-client'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('myFlix-Angular-client');
+    expect(app.title).toEqual('myFlix-Anglular-client');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Hello, myFlix-Angular-client'
+    expect(compiled.querySelector('.content span')?.textContent).toContain(
+      'myFlix-Anglular-client app is running!'
     );
   });
 });

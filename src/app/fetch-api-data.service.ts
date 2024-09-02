@@ -22,14 +22,14 @@ export class FetchApiDataService {
 
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
-      console.error('Some error occured: ', error.error.message);
+      console.error('Some error occurred:', error.error.message);
     } else {
       console.error(
-        `Error Status code ${error.status}, ` + `body was: ${error.error}`
+        `Error Status code ${error.status}, ` + `Error body is: ${error.error}`
       );
     }
     return throwError(
-      () => new Error('Something did not work; please try again later.')
+      () => new Error('Something did not work - please try again later.')
     );
   }
 
@@ -43,6 +43,7 @@ export class FetchApiDataService {
 
   // API call for "user login" endpoint
   public userLogin(userDetails: any): Observable<any> {
+    console.log(userDetails);
     return this.http
       .post(apiUrl + 'login', userDetails)
       .pipe(catchError(this.handleError));
