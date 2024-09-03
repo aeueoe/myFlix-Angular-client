@@ -1,7 +1,45 @@
 mat-form-field {
   width: 100%;
 }
+mat-card-header {
+  justify-content: center;
+  margin-bottom: 1rem;
+}
 
-::ng-deep .mat-card-header-text {
-  margin: 10px 0px !important ;
+mat-card-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+
+  button {
+    background-color: #4a90e2;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      background-color: darken(#4a90e2, 10%);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  mat-card {
+    width: 100%;
+    margin: auto;
+  }
+  mat-card-title {
+    font-size: 1.2rem;
+  }
 }

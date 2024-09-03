@@ -4,24 +4,27 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-movie-genre',
+  selector: 'app-movie-synopsis',
   standalone: true,
-  imports: [MatDialogModule, CommonModule],
-  templateUrl: './genre-card.component.html',
-  styleUrls: ['./genre-card.component.scss'],
+  imports: [CommonModule, MatDialogModule],
+  templateUrl: './movie-synopsis.component.html',
+  styleUrls: ['./movie-synopsis.component.scss'],
 })
-export class GenreCardComponent implements OnInit {
+export class MovieSynopsisComponent implements OnInit {
   /**
    * Called when creating an instance of the class
    * @constructor
-   * @param data pulled from the genre object
+   * @param data pulled from Description key of movies array
    */
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {
-      Name: string;
       Description: string;
+      Language: string;
+      ReleaseYear: string;
+      CountryOfOrigin: string;
+      Runtime: string;
     }
   ) {}
 

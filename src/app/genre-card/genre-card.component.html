@@ -1,1 +1,13 @@
-<p>genre-card works!</p>
+<div class="genre-container">
+    <div class="genre-header">
+        <h2 class="title">{{ data.Name }}</h2>
+    </div>
+    <div>
+        <mat-dialog-content class="genre-content">
+            {{ data.Description }}
+        </mat-dialog-content>
+    </div>
+    <div class="close-btn"><button mat-icon-button aria-label="Close the director details button" mat-dialog-close>
+            Close
+        </button></div>
+</div>

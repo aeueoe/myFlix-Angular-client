@@ -1,0 +1,71 @@
+// _variables.scss
+$main-color: #4a90e2;
+$background-color: #f7f7f7;
+$text-color: #333333;
+$button-text-color: #ffffff;
+
+// _welcome-page.scss
+.main-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(245, 165, 35, 0.658) 0%,
+    rgba(247, 193, 101, 0.541) 30%,
+    rgba(242, 215, 175, 0.5) 50%,
+    rgba(193, 204, 221, 0.39) 70%,
+    rgba(186, 218, 255, 0.418) 80%
+  );
+  font-family: "Roboto", sans-serif;
+
+  .main-page-content {
+    text-align: center;
+
+    h1 {
+      color: $main-color;
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(153, 153, 153, 0.2);
+    }
+
+    .welcome-button {
+      background-color: $main-color;
+      color: $button-text-color;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        background-color: darken($main-color, 10%);
+        transform: scale(1.03);
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba($main-color, 0.3);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .main-page-content {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .welcome-button {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
+}

@@ -1,17 +1,20 @@
-.genre-container {
+.film-container {
   display: flex;
   flex-direction: column;
   padding: 20px;
   background-color: #f7f7f7;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 }
 
-.genre-header {
+.film-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 10px;
 
   @media (max-width: 768px) {
     padding-bottom: 10px;
@@ -22,25 +25,34 @@
   font-size: 24px;
   font-weight: bold;
   color: #333333;
+  margin-bottom: 10px;
 
   @media (max-width: 768px) {
     font-size: 18px;
   }
 }
 
-.genre-content {
-  padding: 20px;
+mat-card-content {
+  padding: 10px;
   font-size: 16px;
   color: #333333;
 
   @media (max-width: 768px) {
-    padding: 10px;
     font-size: 14px;
   }
 }
+.meta {
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
 .close-btn {
   text-align: right;
-  margin-top: 20px;
 
   button {
     background-color: #4a90e2;

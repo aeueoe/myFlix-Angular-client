@@ -89,7 +89,7 @@ export class FetchApiDataService {
   getGenre(name: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
-      .get(apiUrl + 'movies/genres/' + name, {
+      .get(apiUrl + 'genre/:name', {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),

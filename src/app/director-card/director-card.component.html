@@ -1,1 +1,17 @@
-<p>director-card works!</p>
+<div class="director-container">
+    <div class="director-header">
+        <h2 class="title">{{data.Name}}</h2>
+        <p class="director-meta">Born: {{data.birth}}</p>
+        <ng-container *ngIf="data.death">
+            <p class="director-meta "> Died: {{data.death}}</p>
+        </ng-container>
+    </div>
+    <div>
+        <mat-dialog-content class="director-content">
+            {{data.bio}}
+        </mat-dialog-content>
+    </div>
+    <div class="close-btn"><button mat-icon-button aria-label="Close the director details button" mat-dialog-close>
+            Close
+        </button></div>
+</div>

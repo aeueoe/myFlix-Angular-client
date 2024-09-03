@@ -1,1 +1,16 @@
-<p>welcome-page works!</p>
+<body>
+    <div class="main-page">
+        <div class="main-page-content">
+            <h1>Welcome to MyFlix</h1>
+            <button class="welcome-button" mat-raised-button (click)='openUserRegistrationDialog()'>
+                Sign Up
+            </button>
+            <button class="welcome-button" mat-raised-button (click)='openLoginDialog()'>
+                Login
+            </button>
+            <button mat-raised-button color="primary" (click)="openMoviesDialog()">
+                All Movies
+            </button>
+        </div>
+    </div>
+</body>

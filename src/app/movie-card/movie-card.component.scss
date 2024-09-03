@@ -1,0 +1,119 @@
+$main-color: #4a90e2;
+$background-color: #f7f7f7;
+$text-color: #333333;
+$button-text-color: #ffffff;
+$card-border-radius: 8px;
+$card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+$hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: $background-color;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
+  transition: box-shadow 0.3s ease-in-out;
+  margin: 10px;
+  padding: 10px;
+
+  &:hover {
+    box-shadow: $hover-shadow;
+    cursor: pointer;
+  }
+  .mat-card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .mat-card-subtitle {
+    font-size: 0.875rem;
+    color: darken($text-color, 20%);
+  }
+
+  .movie-card-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin: 0.5rem auto;
+  }
+
+  .mat-card-actions button {
+    margin: 0 10px;
+    border-radius: $card-border-radius;
+    background-color: $main-color;
+    color: $button-text-color;
+    transition: background-color 0.3s ease, transform 0.2s ease,
+      box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      background-color: darken($main-color, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba($main-color, 0.4);
+    }
+  }
+
+  .mat-icon {
+    margin-left: 5px;
+    color: rgba(255, 0, 0, 0.473);
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .movie-container {
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+  }
+
+  mat-card {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .movie-card-img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie-container {
+    padding: 10px;
+  }
+
+  mat-card {
+    margin: 5px;
+  }
+
+  .movie-card-img {
+    height: 120px;
+  }
+
+  .mat-card-actions button {
+    padding: 6px 10px;
+    font-size: 0.5rem;
+  }
+}

@@ -1,1 +1,65 @@
-<p>user-profile works!</p>
+<app-navbar></app-navbar>
+
+<div class="main-profile-container">
+    <!--logged in user profile at a quick glance-->
+    <mat-card class="user-details-card">
+        <mat-card-header>
+            <mat-card-title class="user-header">Hi, {{user.Username}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p><b>Username:</b>{{user.Username}}</p>
+            <p><b>Email:</b> {{user.Email}}</p>
+        </mat-card-content>
+    </mat-card>
+
+    <!--updating user info-->
+    <mat-card class="update-form">
+        <mat-card-header>
+            <mat-card-title class="update-form-header">Update Profile</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form>
+                <mat-label>Username</mat-label>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="userData.Username" placeholder="Username" name="Username"
+                        type="text" />
+                </mat-form-field>
+                <mat-label>Email</mat-label>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="userData.Email" placeholder="Email" name="Email" type="email" />
+                </mat-form-field>
+                <mat-label>Birthday</mat-label>
+                <mat-form-field>
+                    <input matInput [(ngModel)]="userData.Birthday" placeholder="Birthday" name="Birthday"
+                        type="date" />
+                </mat-form-field>
+            </form>
+            <mat-card-actions>
+                <button mat-raised-button style="margin-right: 40px;" (click)="updateProfile()" color="primary"
+                    type="submit">
+                    Update profile
+                </button>
+                <button mat-raised-button (click)="deleteUser()" color="warn">
+                    Delete profile
+                </button>
+            </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+
+    <!--favorites-->
+
+    <div class="favs-container">
+        <h3>Your Favorite Movies</h3>
+        <div class="fav-movies">
+            <mat-card *ngFor="let movie of FavoriteMovies;">
+                <mat-card-content>
+                    <img class="movie-posters" src="{{movie.ImageURL}}" alt="{{movie.Title}}" />
+                </mat-card-content>
+            </mat-card>
+            <div *ngIf="!FavoriteMovies || FavoriteMovies.length === 0">
+                <p>You have no favorite movies.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
