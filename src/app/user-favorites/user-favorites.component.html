@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+
+<div class="movie-container">
+    <h2>Favorite Movies</h2>
+    <div class="movie-list">
+        <div *ngFor="let movie of favoriteMovies" class="movie-item">
+            <div class="movie-poster">
+                <img class="movie-img" src="{{ movie.imagePath }}" alt="{{ movie.Title }}" />
+            </div>
+            <div class="movie-info">
+                <h3>{{ movie.Title }}</h3>
+                <p>Directed by: {{ movie.Director.Name }}</p>
+
+                <button mat-icon-button *ngIf="isFavoriteMovie(movie._id)" (click)="removeFromFavorites(movie._id)">
+                    <mat-icon class="fav">favorite</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

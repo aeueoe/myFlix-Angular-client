@@ -1,4 +1,4 @@
-import { Component,  Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -30,24 +30,21 @@ export class UserLoginFormComponent {
 
   ngOnInit(): void {}
 
-  // This is the function responsible for sending the form inputs to the backend
-  loginUser(): void {
+  userLogin(): void {
     this.fetchApiData.userLogin(this.userData).subscribe(
       (response) => {
-        // Logic for a successful user registration goes here! (To be implemented)
-        this.dialogRef.close(); // This will close the modal on success!
-        console.log(response);
-        localStorage.setItem('username', response.username);
+        localStorage.setItem('user', JSON.stringify(response.user));
         localStorage.setItem('token', response.token);
-        this.snackBar.open('User logged in successfully!', 'OK', {
-          duration: 2000,
+        this.dialogRef.close();
+
+        this.snackBar.open(this.userData.Username, 'Welcome back!', {
+          duration: 3000,
         });
         this.router.navigate(['movies']);
       },
       (response) => {
-        console.log(response);
         this.snackBar.open(response, 'OK', {
-          duration: 2000,
+          duration: 3000,
         });
       }
     );

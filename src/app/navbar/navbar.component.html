@@ -1,17 +1,19 @@
-<div class="nav-bar">
-    <mat-toolbar>
-        <span style="margin-left: 10px;">myFlix Movies</span>
-        <span class="spacer"></span>
-        <button mat-icon-button (click)="launchMovies()" class="movie-icon"
-            aria-label="icon button with a clapperboard icon">
-            <mat-icon>movie</mat-icon>
-        </button>
-        <button mat-icon-button (click)="launchProfile()" class="account-icon"
-            aria-label="icon-button with account circle icon">
-            <mat-icon>account</mat-icon>
-        </button>
-        <button mat-icon-button (click)="logoutUser()" class="logout-icon" aria-label="icon button with logout icon">
-            <mat-icon>logout</mat-icon>
-        </button>
-    </mat-toolbar>
-</div>
+<mat-toolbar>
+    <span>myFlix </span>
+    <span class="top-nav"></span>
+    <button class="nav-btn" mat-button (click)="launchMovies()">
+        Movies
+    </button>
+
+    <button class="nav-btn" mat-button (click)="launchProfile()">
+        Profile
+    </button>
+
+    <button class="nav-btn" mat-button (click)="launchFavorites()">
+        Favorites
+    </button>
+
+    <button class="nav-btn" mat-button (click)="logoutUser()">
+        Log out
+    </button>
+</mat-toolbar>

@@ -1,55 +1,129 @@
-.main-profile-container {
+$main-color: #4a90e2;
+$background-color: #f7f7f7;
+$text-color: #333333;
+$button-text-color: #ffffff;
+$card-border-radius: 8px;
+$card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+$hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+.profile-container {
+  background-color: $background-color;
+  padding: 2rem;
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
+  max-width: 500px;
+  margin: 3rem auto;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    margin: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+    margin: 1rem;
+  }
+}
+
+.fav-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.mat-icon {
+  font-size: 3rem;
+  width: 4rem;
+  height: 4rem;
+  margin-top: 0.5rem;
+  color: $main-color;
+}
+
+h1 {
+  color: $text-color;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 10px 0;
+
+  @media (max-width: 480px) {
+    font-size: 1.1em;
+  }
+}
+
+h2 {
+  color: $main-color;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin: 10px 0 1rem 0;
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 480px) {
+  p {
+    font-size: 0.9em;
+  }
+}
+.accnt-btn {
+  border: none;
+  border-radius: $card-border-radius;
+  padding: 10px 20px;
+  margin: 15px;
+  cursor: pointer;
+  box-shadow: $hover-shadow;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    color: #ffffff;
+    background-color: darken($main-color, 10%);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px 15px;
+    font-size: 0.8em;
+    margin: 8px;
+  }
+}
+
+.accnt-btn[color="warn"] {
+  color: #ffffff;
+  background-color: red;
+
+  &:hover {
+    background-color: darken(red, 5%);
+  }
+}
+
+.fav-films {
   display: flex;
   flex-wrap: wrap;
-  position: relative;
-  top: 100px;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
 
-.user-details-card {
-  width: 300px;
-  margin-bottom: 35px;
-  align-items: center;
-  margin-right: 60px;
-}
-
-.update-form {
-  margin-bottom: 150px;
-  align-items: center;
-  min-width: 400px;
-  width: 70%;
-}
-
-.user-header {
-  font-size: 25px;
-  font-weight: bold;
-  padding: 15px;
-  justify-content: center;
-}
-
-.update-form-header {
-  font-size: 25px;
-  font-weight: bold;
-  padding: 15px;
-  justify-content: center;
-}
-
-.fav-movies {
-  display: flex;
-  flex: 1 1 auto;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.movie-posters {
-  width: 220px;
-  height: 320px;
+.movie-card {
   margin: 10px;
+  width: 200px;
+  height: 300px;
+  background-color: #ffffff;
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
+
+  @media (max-width: 480px) {
+    width: 150px;
+    height: 200px;
+  }
 }
 
-h3 {
-  font-size: 25px;
+.example-form {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-left: 40px;
 }

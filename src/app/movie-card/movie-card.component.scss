@@ -6,50 +6,76 @@ $card-border-radius: 8px;
 $card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 $hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 
+body {
+  background-color: $background-color;
+}
 .movie-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   padding: 20px;
-  background-color: $background-color;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 mat-card {
   width: 100%;
   max-width: 300px;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
+  flex: 1 1 300px;
   border-radius: $card-border-radius;
-  box-shadow: $card-shadow;
-  transition: box-shadow 0.3s ease-in-out;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   margin: 10px;
-  padding: 10px;
+  background-color: #fff;
+  box-shadow: $card-shadow;
 
   &:hover {
     box-shadow: $hover-shadow;
-    cursor: pointer;
   }
+
+  .mat-card-header {
+    background-color: lighten($main-color, 45%);
+    padding: 10px;
+    text-align: center;
+  }
+
   .mat-card-title {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
   }
 
   .mat-card-subtitle {
-    font-size: 0.875rem;
+    font-size: 0.7rem;
     color: darken($text-color, 20%);
   }
 
-  .movie-card-img {
+  .movie-img {
+    margin-top: 0.8rem;
     width: 100%;
-    height: 300px;
-    object-fit: cover;
-    margin: 0.5rem auto;
+    padding-top: 150%;
+    position: relative;
+    overflow: hidden;
+
+    .movie-card-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .mat-mdc-card-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    background-color: lighten($background-color, 10%);
   }
 
   .mat-card-actions button {
-    margin: 0 10px;
+    padding: 8px 12px;
     border-radius: $card-border-radius;
     background-color: $main-color;
     color: $button-text-color;
@@ -65,37 +91,45 @@ mat-card {
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 2px rgba($main-color, 0.4);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
   }
 
-  .mat-icon {
-    margin-left: 5px;
-    color: rgba(255, 0, 0, 0.473);
+  mat-icon {
     cursor: pointer;
-    transition: color 0.3s ease;
 
-    &:hover {
-      color: red;
+    &.fav {
+      color: #f44336;
+    }
+
+    &.nofav {
+      color: #ef7067d3;
     }
   }
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .movie-container {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
     padding: 20px;
   }
 
   mat-card {
-    max-width: 100%;
+    max-width: 45%;
     margin: 0 auto;
   }
 
   .movie-card-img {
     height: 180px;
+  }
+  .mat-mdc-card-actions {
+    padding: 0;
+  }
+  .mat-card-actions button {
+    padding: 6px 10px;
+    font-size: 1rem;
   }
 }
 
@@ -105,15 +139,11 @@ mat-card {
   }
 
   mat-card {
-    margin: 5px;
+    max-width: 100%;
+    margin: 10px auto;
   }
 
-  .movie-card-img {
-    height: 120px;
-  }
-
-  .mat-card-actions button {
-    padding: 6px 10px;
-    font-size: 0.5rem;
+  .movie-img {
+    padding-top: 200%;
   }
 }

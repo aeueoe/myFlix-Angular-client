@@ -1,98 +1,121 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FetchApiDataService } from '../fetch-api-data.service';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-/**
- * Component representing the user profile
- * @selector 'app-user-profile'
- * @templateUrl './user-profile.component.html'
- * @styleUrls ['./user-profile.component.scss']
- */
+import { Router } from '@angular/router';
+import { FetchApiDataService } from '../fetch-api-data.service';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-user-profile',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatIconModule,
+    NavbarComponent,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatCardModule,
+  ],
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
-  @Input() userData = {
+  @Input() userData: any = {
     Username: '',
     Password: '',
     Email: '',
     Birthday: '',
-    FavoriteMovies: [],
+    favoriteMovies: [],
   };
-  FavoriteMovies: any[] = [];
-  movies: any[] = [];
-  user: any = {};
 
-  /**
-   * Called when creating an instance of the class
-   * @param fetchProfile - connects the client to the API
-   * @param snackBar - provides feedback after user interaction by displaying notifications
-   * @param router - the Router module for navigation
-   */
+  formUserData: any = {
+    Username: '',
+    Password: '',
+    Email: '',
+  };
+
+  user: any = {};
+  movies: any[] = [];
+  favoriteMovies: any[] = [];
+  userLoaded: boolean = false;
 
   constructor(
-    public fetchProfile: FetchApiDataService,
+    public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
-    private router: Router
+    public dialog: MatDialog,
+    public router: Router
   ) {}
 
-  //once component has mounted these functions must be invoked, ie the profile info of the user & their list of fav movies
   ngOnInit(): void {
-    this.userProfile();
- 
+    this.getUser();
+    this.formUserData = {
+      Username: this.user.Username,
+      Email: this.user.Email,
+      Password: '',
+    };
   }
 
-  userProfile(): void {
-    this.user = this.fetchProfile.getUser();
-    this.userData.Username = this.user.Username;
-    this.userData.Password = this.user.Password;
-    this.userData.Email = this.user.Email;
-    this.userData.Birthday = this.user.Birthday;
-    this.fetchProfile.getAllMovies().subscribe((response) => {
-      this.FavoriteMovies = response.filter((movie: any) =>
-        this.user.FavoriteMovies.includes(movie._id)
+  getUser(): void {
+    let user = localStorage.getItem('user');
+    if (user) {
+      this.user = JSON.parse(user);
+      this.userLoaded = true;
+    }
+  }
+
+  updateUser(): void {
+    let formData = { ...this.formUserData };
+    if (!formData.Password) {
+      delete formData.Password;
+    }
+
+    const user = { ...this.user, ...formData };
+    this.fetchApiData.editUser(user).subscribe((result: any) => {
+      console.log('User update success:', result);
+      localStorage.setItem('user', JSON.stringify(result));
+      this.formUserData = {
+        Username: this.user.Username,
+        Email: this.user.Email,
+        Password: '',
+      };
+      this.snackBar.open(
+        'User Info Updated! Please Logout to See the Updated Information in Your Account',
+        'OK',
+        {
+          duration: 3000,
+        }
       );
     });
   }
 
-  updateProfile(): void {
-    this.fetchProfile.editUser(this.userData).subscribe((response) => {
-      console.log('Profile Update', response);
-      localStorage.setItem('user', JSON.stringify(response));
-      this.snackBar.open('Profile updated successfully', 'OK', {
-        duration: 2000,
-      });
-    });
-  }
-
-   deleteProfile(): void {
-    if(confirm('Are you sure? This cannot be undone.')) {
-    this.fetchApiData.deleteUser().subscribe(() => {
-      localStorage.clear();
-      this.router.navigate(['welcome']);
-      this.snackBar.open('Account Deleted', 'OK', {
-        duration: 3000
+  deleteUser(): void {
+    console.log('deleteUser function called:', this.userData.Username);
+    if (confirm('Do you want to delete your account permanently?')) {
+      this.router.navigate(['welcome']).then(() => {
+        this.snackBar.open('You have successfully deleted your account', 'OK', {
+          duration: 2000,
         });
+      });
+      this.fetchApiData.deleteUser().subscribe((result) => {
+        console.log(result);
+        localStorage.clear();
       });
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/profile']).then(() => {
+    this.router.navigate(['profile']).then(() => {
       window.location.reload();
     });
-  }
-
-}
-
-  getFavMovies(): void {
-    this.user = this.fetchProfile.getUser();
-    this.userData.FavoriteMovies = this.user.FavoriteMovies;
-    this.FavoriteMovies = this.user.FavoriteMovies;
-    console.log(`Here is this users ${this.FavoriteMovies}`);
   }
 }

@@ -1,12 +1,65 @@
-.spacer {
-  flex: 1 1 auto;
+$main-color: #4a90e2;
+$background-color: #f7f7f7;
+$text-color: #333333;
+$button-text-color: #ffffff;
+$card-border-radius: 8px;
+$card-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+$hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+mat-toolbar {
+  font-family: "Roboto", sans-serif;
+  background-color: #fff;
+  color: $text-color;
+  padding: 10px 35px;
+  box-shadow: $card-shadow;
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: row;
+    padding: 10px 15px;
+    text-align: center;
+  }
 }
 
-.nav-bar {
-  height: 100px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-  width: 100%;
+.top-nav {
+  flex: 1 1 auto;
+  margin: 0 25px;
+}
+
+.nav-btn {
+  color: $main-color;
+  font-weight: 600;
+  background-color: #fff;
+  border: 1px solid $main-color;
+  border-radius: $card-border-radius;
+  padding: 8px 15px;
+  margin: 0 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: $main-color;
+    color: $button-text-color;
+  }
+  @media (max-width: 480px) {
+    font-weight: 500;
+    font-size: 0.7rem;
+    padding: 6px 6px;
+    margin: 0 0.3rem;
+  }
+}
+
+span {
+  font-weight: 600;
+  color: $main-color;
+
+  @media (max-width: 480px) {
+    font-weight: 500;
+    font-size: 1rem;
+  }
 }
