@@ -50,7 +50,7 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * Get all movies from the database
+   * Retrieves all movies from the database and assigns them to the movies property.
    */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -59,6 +59,9 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Fetches the user's favorite movies and updates the favoriteMovies property.
+   */
   getFavorites(): void {
     this.fetchApiData.getUser(this.userData.Username).subscribe(
       (resp: any) => {
@@ -76,14 +79,25 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * Check if a movie is a user's favorite already
-   * */
+   * Checks if a movie is already in the user's favorites.
+   * @param movieId - The ID of the movie to check.
+   * @returns True if the movie is a favorite, otherwise false.
+   */
   isFavoriteMovie(movieId: string): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     return user.favoriteMovies
       ? user.favoriteMovies.indexOf(movieId) >= 0
       : false;
   }
+
+  /**
+   * Opens a dialog with details of the director.
+   * @param name - The name of the director.
+   * @param bio - A short biography of the director.
+   * @param birth - The birth date of the director.
+   * @param death - The death date of the director.
+   */
+
   openDirectorDialog(
     name: string,
     bio: string,
@@ -102,6 +116,10 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a dialog with movie synopsis including description, language, release year, country of origin, and runtime.
+   * @param movie - The movie object containing synopsis details.
+   */
   openSynopsisDialog(movie: any): void {
     this.dialog.open(MovieSynopsisComponent, {
       data: {
@@ -115,6 +133,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a dialog with genre details.
+   * @param name - The name of the genre.
+   * @param description - The description of the genre.
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: {
@@ -124,6 +147,11 @@ export class MovieCardComponent implements OnInit {
       width: '600px',
     });
   }
+
+  /**
+   * Adds or removes a movie from the user's favorites and updates the favorites list.
+   * @param id - The ID of the movie to add or remove from favorites.
+   */
 
   addToFavorites(id: string): void {
     console.log(id);
@@ -146,8 +174,9 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * Removes a movie from a user's favorites
-   * */
+   * Removes a movie from the user's favorites and updates the favorites list.
+   * @param id - The ID of the movie to remove from favorites.
+   */
   removeFromFavorites(id: string): void {
     console.log(id);
     this.fetchApiData.deleteFavoriteMovie(id).subscribe(() => {

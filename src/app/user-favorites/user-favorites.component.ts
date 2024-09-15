@@ -44,8 +44,7 @@ export class UserFavoritesComponent implements OnInit {
   }
 
   /**
-   * Get all movies from the GET movies endpoint.
-   * Filter by the user's (localStorage('user')) favorite's list
+   * Retrieves all movies and filters them based on the user's favorite movies list.
    */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -68,12 +67,18 @@ export class UserFavoritesComponent implements OnInit {
     });
   }
 
+  /**
+   * Checks if a movie is in the user's favorites list.
+   * @param movieId - The ID of the movie to check.
+   * @returns True if the movie is a favorite, otherwise false.
+   */
   isFavoriteMovie(movieId: string): boolean {
     return this.userData.favoriteMovies.includes(movieId);
   }
 
   /**
-   * Remove a movie from a user's favorites
+   * Removes a movie from the user's favorites and updates the local storage and component state.
+   * @param id - The ID of the movie to remove from favorites.
    */
   removeFromFavorites(id: string): void {
     this.fetchApiData.deleteFavoriteMovie(id).subscribe(() => {

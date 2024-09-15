@@ -2,7 +2,7 @@
 
 ![MyFlixAngular](./src/assets/allfilms.png)
 
-Website [here](https://myflix-five.vercel.app/).
+Website is [here](https://myflix-five.vercel.app/)
 
 ## Objective
 

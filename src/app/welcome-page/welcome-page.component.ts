@@ -18,11 +18,21 @@ export class WelcomePageComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * Opens the user registration form in a MatDialog modal.
+   * @returns void
+   */
+
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegistrationFormComponent, {
       width: '400px',
     });
   }
+
+  /**
+   * Opens the user login form in a MatDialog modal.
+   * @returns void
+   */
 
   openLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {

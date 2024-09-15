@@ -30,6 +30,8 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
+
+  
   @Input() userData: any = {
     Username: '',
     Password: '',
@@ -72,6 +74,10 @@ export class UserProfileComponent implements OnInit {
       this.userLoaded = true;
     }
   }
+
+  /**
+   * Update user details
+   */
 
   updateUser(): void {
     let formData = { ...this.formUserData };

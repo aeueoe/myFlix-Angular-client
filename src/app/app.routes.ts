@@ -4,6 +4,10 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserFavoritesComponent } from './user-favorites/user-favorites.component';
 
+/**
+ * Set url routes
+ */
+
 export const routes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
